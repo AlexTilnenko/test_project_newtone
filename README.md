@@ -1,3 +1,6 @@
+Тестовое задание в компанию Newtone страница со списком товаров с возможностью добавить в корзину, страница корзины. На один из товаров действует скидка при покупке каждого третьего товара.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
