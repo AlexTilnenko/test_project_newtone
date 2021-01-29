@@ -13,8 +13,10 @@
 
 
 .cart {
+   text-align: center;
    display: flex;
    align-items: center;
+   justify-content: center;
 
    & span {
       margin-left: 3px;
@@ -23,6 +25,32 @@
    &-empty {
       text-align: center;
    }
+
+   &__price {
+      margin-left: 5px;
+   }
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   }
+
+   &__list-item {
+      width: 100%;
+      max-width: 500px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      padding: 10px 25px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+   }
+
+   &__actions {}
 }
 
 .home {
