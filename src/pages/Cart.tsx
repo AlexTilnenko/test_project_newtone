@@ -10,7 +10,7 @@ interface CartProps {
 
 export const Cart: React.FC<CartProps> = ({ addedProducts, onCartClear }) => {
 	const addedProductsArr = Object.keys(addedProducts.productsList).map(
-		(key) => addedProducts.productsList[key].items[0]
+		(key) => addedProducts.productsList[key].item
 	);
 
 	return (
@@ -29,7 +29,7 @@ export const Cart: React.FC<CartProps> = ({ addedProducts, onCartClear }) => {
 								<Avatar src={item.img} alt={item.name} />
 								<div className='cart-item__label'>{item.name}</div>
 								<div className='cart-item__label'>
-									{addedProducts.productsList[item.id].items.length}kg
+									{addedProducts.productsList[item.id].count}kg
 								</div>
 								<div className='cart-item__label'>
 									{addedProducts.productsList[item.id].price}$

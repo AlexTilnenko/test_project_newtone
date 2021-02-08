@@ -8,7 +8,7 @@ import "./App.scss";
 
 export type ProductInCart = {
 	[key: string]: {
-		items: Array<Product>;
+		item: Product;
 		price: number;
 		count: number;
 	};
@@ -31,41 +31,39 @@ function App() {
 
 	const addProductToCartHandler = (product: Product) => {
 		setCart((state) => {
-			const getTotalPrice = (arr: Array<Product>): number => {
-				return arr.reduce((sum, item) => sum + item.price, 0);
+			const getTotalPrice = (itemsList: ProductInCart): number => {
+				return Object.values(itemsList).reduce((sum: number, item) => sum + item.price, 0);
 			};
 
-			const currentProductItems: Array<Product> = state.productsList[product.id]
-				? [...state.productsList[product.id].items, product]
-				: [product];
+			let newCount = state.productsList[product.id]
+				? state.productsList[product.id].count + 1
+				: 1;
 
-			const currentProductCount: number = currentProductItems.length;
+			let newPrice = state.productsList[product.id]
+				? state.productsList[product.id].price + product.price
+				: product.price;
+
+			const addDiscount = (price: number): number => {
+				let priceWithDiscount: number = price;
+				if (product.discountPerWeight && newCount % product.discountPerWeight === 0) {
+					priceWithDiscount = price - product.discountSize;
+				}
+				return priceWithDiscount;
+			};
 
 			const newProductList: ProductInCart = {
 				...state.productsList,
 				[product.id]: {
-					items: currentProductItems,
-					count: currentProductCount,
-					price:
-						// если на товар не действует скидка тогда прост осчитаем сумму данного товара иначе если количество тавара кратно количеству
-						// на который распространяется скидка тогда из общей суммы товара вычитаем скидку, если количество товара не кратное нужному
-						// количеству для скидки тогда проверям существует ли такой товар в корзине если да - добавляем его цену к предыдущей цене иначе
-						// ставим цену товара
-						product.discountSize === 0
-							? getTotalPrice(currentProductItems)
-							: currentProductCount % product.discountPerWeight === 0
-							? getTotalPrice(currentProductItems) -
-							  (currentProductCount / product.discountPerWeight) * product.discountSize
-							: state.productsList[product.id]
-							? state.productsList[product.id].price + product.price
-							: product.price
+					item: product,
+					count: newCount,
+					price: addDiscount(newPrice)
 				}
 			};
-			console.log(state);
+
 			return {
 				...state,
 				productsList: newProductList,
-				totalPrice: Object.values(newProductList).reduce((sum, item) => sum + item.price, 0),
+				totalPrice: getTotalPrice(newProductList),
 				totalCount: Object.values(newProductList).length
 			};
 		});

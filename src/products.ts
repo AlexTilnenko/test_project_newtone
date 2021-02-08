@@ -28,8 +28,7 @@ export const products: Array<Product> = [
 		id: 3,
 		name: "Papaya",
 		price: 10,
-		img:
-			"https://static.wikia.nocookie.net/edopedia/images/8/8c/%D0%9F%D0%B0%D0%BF%D0%B0%D0%B9%D1%8F.png/revision/latest?cb=20171216150804&path-prefix=ru",
+		img: "https://www.fructo.com.ua/image/cache/catalog/fruct/papaya-1400x1400.png",
 		discountSize: 5,
 		discountPerWeight: 3
 	}
