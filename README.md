@@ -1,3 +1,7 @@
+Тестовое задание в компанию Newtone страница со списком товаров с возможностью добавить в корзину, страница корзины. На один из товаров действует скидка при покупке каждого третьего товара.
+
+Ссылка на деплой: https://alextilnenko.github.io/test_project_newtone/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
